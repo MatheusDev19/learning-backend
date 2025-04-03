@@ -19,7 +19,8 @@ export class DeleteCustomerService {
       throw new Error("Customer not found");
     }
 
-    await customer.customer.delete({ // como se chamase PrismaClient.customer.delete, pois customer esta dentro de PrismaClient;
+    await customer.customer.delete({
+      // como se chamase PrismaClient.customer.delete, pois customer esta dentro de PrismaClient;
       where: { id: findCustomer.id },
     });
 
