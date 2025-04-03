@@ -4,6 +4,11 @@ import { routes } from "../routes/routes";
 const server = fastify({ logger: true });
 const PORT = 3333;
 
+server.setErrorHandler((error, request, reply) => {
+  server.log.error(error);
+  reply.send({ message: error.message });
+});
+
 const start = async () => {
   await server.register(routes);
   try {
