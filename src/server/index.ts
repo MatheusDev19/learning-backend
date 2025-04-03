@@ -1,5 +1,6 @@
 import { fastify } from "fastify";
 import { routes } from "../routes/routes";
+import cors from "@fastify/cors";
 
 const server = fastify({ logger: true });
 const PORT = 3333;
@@ -10,6 +11,8 @@ server.setErrorHandler((error, request, reply) => {
 });
 
 const start = async () => {
+
+  await server.register(cors);
   await server.register(routes);
   try {
     await server.listen({ port: PORT });
